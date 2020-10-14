@@ -73,6 +73,14 @@ enum class HttpStatusCode : std::uint16_t
     kStatusHttpVersionNotSupported = 505
 };
 
+struct HttpStatusCodeHash
+{
+    template <typename HttpStatusCode> std::size_t operator()(HttpStatusCode t) const
+    {
+        return static_cast<std::size_t>(t);
+    }
+};
+
 enum class PostError : std::uint8_t
 {
     kPostErrorNone  = 0, ///< No error

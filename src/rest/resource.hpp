@@ -148,8 +148,8 @@ private:
     std::unordered_map<std::string, ResourceHandler>         mResourceMap;
     std::unordered_map<std::string, ResourceCallbackHandler> mResourceCallbackMap;
 
-    std::unordered_map<HttpStatusCode, std::string> mResponseCodeMap;
-    std::unordered_map<std::string, DiagInfo>       mDiagSet;
+    std::unordered_map<HttpStatusCode, std::string, HttpStatusCodeHash> mResponseCodeMap;
+    std::unordered_map<std::string, DiagInfo>                           mDiagSet;
 };
 
 } // namespace rest
