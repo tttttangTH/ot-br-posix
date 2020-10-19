@@ -50,6 +50,8 @@ main()
     sleep 5
     expect <<EOF &
 spawn ot-ctl
+send "factoryreset\r\n"
+sleep 0.1
 send "networkname hello\r\n"
 expect "Done"
 send "channel 20\r\n"

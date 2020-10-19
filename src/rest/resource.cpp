@@ -123,11 +123,6 @@ Resource::Resource(ControllerOpenThread *aNcp)
     mResourceCallbackMap.emplace(OT_REST_RESOURCE_PATH_DIAGNOETIC, &Resource::HandleDiagnosticCallback);
 }
 
-void Resource::Init(void)
-{
-    otThreadSetReceiveDiagnosticGetCallback(mInstance, &Resource::DiagnosticResponseHandler, this);
-}
-
 void Resource::Handle(Request &aRequest, Response &aResponse) const
 {
     std::string url = aRequest.GetUrl();
@@ -518,6 +513,8 @@ void Resource::UpdateDiag(std::string aKey, std::vector<otNetworkDiagTlv> &aDiag
 
 void Resource::Diagnostic(const Request &aRequest, Response &aResponse) const
 {
+    otThreadSetReceiveDiagnosticGetCallback(mInstance, &Resource::DiagnosticResponseHandler,
+                                            const_cast<Resource *>(this));
     OT_UNUSED_VARIABLE(aRequest);
     struct otIp6Address rloc16address = *otThreadGetRloc(mInstance);
     struct otIp6Address multicastAddress;
