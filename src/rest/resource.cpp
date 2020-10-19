@@ -534,15 +534,9 @@ void Resource::Diagnostic(const Request &aRequest, Response &aResponse) const
 
 exit:
 
-    if (error == OTBR_ERROR_NONE)
-    {
-        aResponse.SetStartTime(steady_clock::now());
-        aResponse.SetCallback();
-    }
-    else
-    {
-        ErrorHandler(aResponse, HttpStatusCode::kStatusInternalServerError);
-    }
+    aResponse.SetStartTime(steady_clock::now());
+    aResponse.SetCallback();
+    
 }
 
 void Resource::DiagnosticResponseHandler(otMessage *aMessage, const otMessageInfo *aMessageInfo, void *aContext)
