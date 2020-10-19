@@ -518,19 +518,15 @@ void Resource::UpdateDiag(std::string aKey, std::vector<otNetworkDiagTlv> &aDiag
 
 void Resource::Diagnostic(const Request &aRequest, Response &aResponse) const
 {
-    otbrError error = OTBR_ERROR_NONE;
     OT_UNUSED_VARIABLE(aRequest);
     struct otIp6Address rloc16address = *otThreadGetRloc(mInstance);
     struct otIp6Address multicastAddress;
 
     VerifyOrExit(otThreadSendDiagnosticGet(mInstance, &rloc16address, kAllTlvTypes, sizeof(kAllTlvTypes)) ==
-                     OT_ERROR_NONE,
-                 error = OTBR_ERROR_REST);
-    VerifyOrExit(otIp6AddressFromString(kMulticastAddrAllRouters, &multicastAddress) == OT_ERROR_NONE,
-                 error = OTBR_ERROR_REST);
+                 OT_ERROR_NONE);
+    VerifyOrExit(otIp6AddressFromString(kMulticastAddrAllRouters, &multicastAddress) == OT_ERROR_NONE);
     VerifyOrExit(otThreadSendDiagnosticGet(mInstance, &multicastAddress, kAllTlvTypes, sizeof(kAllTlvTypes)) ==
-                     OT_ERROR_NONE,
-                 error = OTBR_ERROR_REST);
+                 OT_ERROR_NONE);
 
 exit:
 
