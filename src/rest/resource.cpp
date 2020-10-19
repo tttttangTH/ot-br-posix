@@ -536,7 +536,6 @@ exit:
 
     aResponse.SetStartTime(steady_clock::now());
     aResponse.SetCallback();
-    
 }
 
 void Resource::DiagnosticResponseHandler(otMessage *aMessage, const otMessageInfo *aMessageInfo, void *aContext)
