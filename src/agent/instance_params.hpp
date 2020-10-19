@@ -86,6 +86,14 @@ public:
 #endif
 
 private:
+    InstanceParams()
+        : mThreadIfName(nullptr)
+#if OTBR_ENABLE_BACKBONE_ROUTER
+        , mBackboneIfName(nullptr)
+#endif
+    {
+    }
+
     const char *mThreadIfName;
 #if OTBR_ENABLE_BACKBONE_ROUTER
     const char *mBackboneIfName;
